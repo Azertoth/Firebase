@@ -9,11 +9,11 @@
     <ion-label>Fruit : </ion-label>
     <ion-input [(ngModel)]="fruit"></ion-input> <br />
     
-    <ion-button (click)="onAjouterFruit()"><ion-icon name="body-outline"></ion-icon></ion-button>
+    <ion-button (click)="onAjouterFruit()"><ion-icon name="bag-outline"></ion-icon></ion-button>
     <br />
     <ion-item *ngFor="let fruit of fruits, let i = index">
       {{ fruit }}
-      <ion-button (click)="onEffacerFruit(i)"><ion-icon name="trash"></ion-icon></ion-button>
+      <ion-button (click)="onEffacerFruit(i)" color="danger"><ion-icon name="trash"></ion-icon></ion-button>
     </ion-item>
   </ion-card>
   <ion-card>
@@ -25,7 +25,7 @@
     <br />
     <ion-item *ngFor="let p of personnes, let i = index">
       {{ p.prenom }} {{ p.nom }}
-      <ion-button (click)="onEffacerPersonne(i)"><ion-icon name="trash"></ion-icon></ion-button>
+      <ion-button (click)="onEffacerPersonne(i)" color="danger"><ion-icon name="trash"></ion-icon></ion-button>
     </ion-item>
   </ion-card>
 </ion-content> 

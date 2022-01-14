@@ -16,43 +16,36 @@ export class HomePage implements OnInit {
   constructor(private httpClient: HttpClient) {}
 
   ngOnInit(): void {
-    let url = 'https://gestion-equipe.firebaseio.com/';
-    // créer un noeud
-    let noeud = 'personneLio.json';
-    url = url + noeud;
+    let url = 'https://gestion-equipe.firebaseio.com/personneLio.json';
     // PUT (ecraser le noeud)
-    // POST
-    this.httpClient.get<any>(url).subscribe((personne) => {
-      this.personnes = personne;
+    this.httpClient.get<any>(url).subscribe((personnes) => {
+      if(personnes != undefined) {
+        this.personnes = personnes;
+      }
       url = 'https://gestion-equipe.firebaseio.com/fruitsLio.json';
       this.httpClient.get<any>(url).subscribe((fruits) => {
-        console.log(fruits);
-        this.fruits = fruits;
+        if (fruits != undefined) {
+          this.fruits = fruits;
+        }
       });
     });
-    
   }
 
   onAjouterFruit() {
     // envoyer le fruit au back office
-    let url = 'https://gestion-equipe.firebaseio.com/';
-    // créer un noeud
-    let noeud = 'fruitsLio.json';
-    this.httpClient.get<any>(url).subscribe((fruits) => {
-      this.fruits = fruits;
-    });
-    url = url + noeud;
+    let url = 'https://gestion-equipe.firebaseio.com/fruitsLio.json';
     this.fruits.push(this.fruit);
+
     // PUT (ecraser le noeud)
-    // POST
     this.httpClient.put(url, this.fruits).subscribe(() => {
       console.log('ecriture Post ok');
+      this.fruit = '';
     });
   }
 
-  onEffacerFruit(i:number) {
-    this.fruits.splice(i, 1);
+  onEffacerFruit(i: number) {
     let url = 'https://gestion-equipe.firebaseio.com/fruitsLio.json';
+    this.fruits.splice(i, 1);
     this.httpClient.put(url, this.fruits).subscribe(() => {
       console.log('ecriture Post ok');
     });
@@ -64,28 +57,21 @@ export class HomePage implements OnInit {
     p.prenom = this.prenom;
     this.nom = '';
     this.prenom = '';
-    
+
     // envoyer la personne au back office
-    let url = 'https://gestion-equipe.firebaseio.com/';
-    this.httpClient.get<any>(url).subscribe((personnes) => {
-      this.personnes = personnes;
-    });
-    this.personnes.push(p);
-    // créer un noeud
-    let noeud = 'personneLio.json';
-    url = url + noeud;
+    let url = 'https://gestion-equipe.firebaseio.com/personneLio.json';
+    this.personnes.push(p)
     // PUT (ecraser le noeud)
-    // POST
     this.httpClient.put(url, this.personnes).subscribe(() => {
-      console.log('ecriture Post ok');
-    });
+        console.log('ecriture Post ok');
+      });
   }
 
-  onEffacerPersonne(i:number) {
-    this.personnes.splice(i, 1);
+  onEffacerPersonne(i: number) {
     let url = 'https://gestion-equipe.firebaseio.com/personneLio.json';
     this.httpClient.put(url, this.personnes).subscribe(() => {
       console.log('ecriture Post ok');
+      this.personnes.splice(i, 1);
     });
   }
 }
