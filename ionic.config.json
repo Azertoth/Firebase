@@ -1,0 +1,7 @@
+{
+  "name": "Fruits-Firebase",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
