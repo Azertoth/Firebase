@@ -15,6 +15,7 @@ export class HomePage implements OnInit {
 
   constructor(private httpClient: HttpClient) {}
 
+  // attention : c'est le compte firebase de Jeff = si la regle change, celui ne fonctionnera plus
   ngOnInit(): void {
     let url = 'https://gestion-equipe.firebaseio.com/personneLio.json';
     // PUT (ecraser le noeud)

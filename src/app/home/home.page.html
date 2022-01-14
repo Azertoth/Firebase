@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Calcul du IMC </ion-title>
+    <ion-title> Liste de fruits et Personnes sur Firebase </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,10 +11,10 @@
     
     <ion-button (click)="onAjouterFruit()"><ion-icon name="bag-outline"></ion-icon></ion-button>
     <br />
-    <ion-item *ngFor="let fruit of fruits, let i = index">
+    <ion-list *ngFor="let fruit of fruits, let i = index">
       {{ fruit }}
       <ion-button (click)="onEffacerFruit(i)" color="danger"><ion-icon name="trash"></ion-icon></ion-button>
-    </ion-item>
+    </ion-list>
   </ion-card>
   <ion-card>
     <ion-label>Nom : </ion-label>
@@ -23,9 +23,9 @@
     <ion-input [(ngModel)]="prenom"></ion-input> <br />
     <ion-button (click)="onAjouterPersonne()"><ion-icon name="body-outline"></ion-icon></ion-button>
     <br />
-    <ion-item *ngFor="let p of personnes, let i = index">
+    <ion-list *ngFor="let p of personnes, let i = index">
       {{ p.prenom }} {{ p.nom }}
       <ion-button (click)="onEffacerPersonne(i)" color="danger"><ion-icon name="trash"></ion-icon></ion-button>
-    </ion-item>
+    </ion-list>
   </ion-card>
 </ion-content> 
